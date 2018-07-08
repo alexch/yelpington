@@ -4,7 +4,7 @@ var mime = require('mime-types'); // https://github.com/jshttp/mime-types
 
 var port = process.env.PORT || 5000;
 http.createServer(function (request, response) {
-    let contentType = 'text/plain';
+    let contentType;
     var file;
     let data;
 
@@ -21,7 +21,6 @@ http.createServer(function (request, response) {
             .map(file => file.substring(0, file.length - '.json'.length))
         file = null
         contentType = mime.lookup('json')
-        console.log(jsonFiles)
         data = JSON.stringify(jsonFiles)
     } 
     else if (path.indexOf('.') === -1) {
@@ -41,7 +40,6 @@ http.createServer(function (request, response) {
         }
     } catch (error) {
         console.log(error);
-        // todo: confirm this is a file not found error
         data = "Error: " + error.toString();
         response.statusCode = 404;
     }
