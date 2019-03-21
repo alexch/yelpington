@@ -1,18 +1,13 @@
+<h1>Yelpington!</h1>
+
+TODO: this page should list all the restaurants
+
 <script>
-let name = document.location.pathname.slice(1);
-
-if (!name) {
-  console.log("no place name specfied");
-} else {
-  console.log("fetching place named '" + name + "'");
-
-  fetch(name + '.json')
+  fetch('all.json')
     .then(function (response) {
       return response.text();
     })
     .then(function (myText) {
       console.log(myText);
     });
-}
-
 </script>
